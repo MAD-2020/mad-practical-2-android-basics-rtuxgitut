@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
      //Declare set of variables
     private static final String TAG = "Whack-A-Mole"; //Title of game
 
-    private TextView resultViewer; //Allow program to see result of the whack a mole
     private Button firstbutton; //Individually declare all 3 buttons
     private Button secondbutton;
     private Button thirdbutton;
     private List<Button> holeList = new ArrayList<>(); //List to store all 3 buttons
     private Integer randomisedLocation; //The "mole"
+    private TextView resultViewer; //Allow program to see result of the whack a mole
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +65,17 @@ public class MainActivity extends AppCompatActivity {
                         Log.v(TAG,"Right Button Clicked!");
                         break;
                     default:
-                        Log.v(TAG,"No input found.");
+                        Log.v(TAG,"Click the buttons to start playing the game.");
                 }
 
                 Integer score = Integer.parseInt(resultViewer.getText().toString());
                 switch (pressedButton.getText().toString()) {
-                    case "*": //
+                    case "*": //If user managed to hit the mole
                         Log.v(TAG,"Successful, points added!");
-                        score = score + 1;
+                        score++;
                         resultViewer.setText(score.toString());
                         break;
-                    case "O":
+                    case "O": //If user failed to hit the mole
                         if (score <= 0)
                         {
                             Log.v(TAG,"Reminder: To score points hit the button with the '*' in it");
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         else
                         {
                             Log.v(TAG,"Unsuccessful, points deducted!");
-                            score = score - 1; //Works as normal if user gained points beforehand
+                            score--; //Works as normal if user gained points beforehand
                         }
                         resultViewer.setText(score.toString());
                         break;
